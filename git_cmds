@@ -125,6 +125,14 @@ git branch -d experimental
 git branch -D experimental
 
 
+### Git hub
+git init
+git add *_cmds
+git commit -m"Initial commit"
+git remote add origin https://github.com/awafa/SCM.git
+git push -u origin master
+
+
 ######################
 ## Collaboration
 
