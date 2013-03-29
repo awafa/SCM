@@ -1,0 +1,204 @@
+#!/bin/bash
+
+# Config editor
+git config --global core.editor
+
+# Compiled from http://schacon.github.com/git/gittutorial.html
+man gittutorial
+
+# Initialize git for project
+cd project
+git init
+
+# Stage files for commit
+git add .
+#Or
+git add file1 file2 ...
+
+# Unstage a file
+git reset HEAD file
+
+git commit -m""
+
+# Add to the staging area
+git add
+
+#to diff the staging area compared to HEAD
+git diff --cached 
+
+# to diff unstaged vs staging area
+
+# can use wild cards for removals
+git rm log/\*.log
+git diff 
+
+# to see status
+git status
+
+# Commit staged files
+git commit
+
+# -a will stage files before commiting to the repository (if you want to bypass staging )
+git commit -a
+
+
+# Stage a file for removal and remove from disk
+git rm file # will be gone in the next commit
+
+# Remove from the staging area only, doesn't remove copy on disk
+git rm --cached file 
+
+# can use wild cards for removals
+git rm log/\*.log
+
+
+# Renaming file
+git mv file to_file
+
+
+# Log 
+git log
+
+# complete diffs
+git log -p
+git log -p -2 # Limit to two entries
+
+#Overview of the changes
+git log --stat --summary
+
+# Compact one line per checkin
+git log --oneline
+
+# --pretty
+git log --pretty=oneline
+
+# Custom
+git log --pretty=format:"%h - %an, %ar : %s"
+
+# With graph
+git log --pretty=format:"%h %s" --graph
+
+# Since a date
+git log --since=2.weeks
+
+git log --author=
+
+git log --grep  # Grep for a message
+
+## log filter by date range for files starting with t/
+# The -- is the last before the path
+git log --pretty="%h:%s" --author=gitster --since="2008-10-01" \
+--before="2008-11-01" --no-merges -- t/
+
+# To Branch
+git branch experimental
+
+# List of branches, the one marked with an asterisk is the one you are currently on
+git branch
+
+
+# To switch to the experimental branch
+git checkout experimental
+
+# Edit file, then switch back to master branch
+git commit -a
+git checkout master
+
+
+# Edit file, and commit to the master branch
+git commit -a
+
+
+# to merge changes from master to experimental
+git merge experimental
+
+
+# Graphical history
+gitk
+git citool
+
+
+# Delete the experimental branch, after making sure its changes were merged to the currennt branch
+git branch -d experimental
+
+# To the delete the branch and forget it
+git branch -D experimental
+
+
+######################
+## Collaboration
+
+# To collaborate on an existing project at /home/alice/project, Bob will create myrepo
+
+bob$
+git clone /home/alice/project myrepo
+
+# Edit file, then commit
+bob$
+git commit -a
+
+# Alice can pull changes when Bob is done (Will pull and merge change)
+alice$
+cd /home/alice/project
+git pull /home/bob/myrepo master
+
+
+# OR Alice can peek at the changes only
+# This operation is safe even if Alice has uncommitted local changes. The range notation "HEAD..FETCH_HEAD" means "show everything that is reachable from the FETCH_HEAD but exclude anything that is reachable from HEAD". Alice already knows everything that leads to her current state (HEAD), and reviews what Bob has in his state (FETCH_HEAD) that she has not seen with this command.
+alice$
+git fetch /home/bob/myrepo master
+git log -p HEAD..FETCH_HEAD
+
+# Or visualize it
+alice$
+gitk HEAD..FETCH_HEAD
+
+# Visualize changes both of them did since they forked
+#This means "show everything that is reachable from either one, but exclude anything that is reachable from both of them".
+alice$
+gitk HEAD...FETCH_HEAD
+
+
+# Add a remote repo shorthand for a repo that i regularly interact with
+alice$
+git remote add bob /home/bob/myrepo
+# Then Alice can use
+alice$
+git fetch bob
+
+# Using a shorthand forms bring bobs stuff to a remote tracking branch bob/master
+# alice can use
+
+alice$
+git log -p master..bob/master
+
+# Alice can merge change after inspection
+alice$
+git merge bob/master
+
+# OR Alice can pull from the remote tracking branch
+alice$
+git pull . remotes/bob/master
+
+# Bob can update from Alice (note that he originally cloned her repo)
+bob$
+git pull
+
+# Bob can query for the project repo
+bob$
+git config --get remote.origin.url
+o
+
+# Master copy at clone time
+bob $ git branch -r
+origin/master
+
+
+# ssh cloning
+bob$
+git clone alice.org:/home/alice/project myrepo
+
+
+#########
+## Exploring History
+

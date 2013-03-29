@@ -1,0 +1,90 @@
+# Initialize a new dir as a CVSROOT
+cvs -d /usr/local/cvsroot init
+ 
+#                                  dir     vendor_tag release_tag
+cvs import -m "Imported sources" dsim/pcv    yoyo          start
+
+
+# e.g. you want to import ic/mr
+#1) cd ic/mr
+#2) cvs import -m"message" ic/mr vtag rtag
+ 
+ 
+cvs checkout ....
+cvs commit .....
+ 
+cvs release -d dsm/pcv
+ 
+cvs tag rel_0_4 sui_main.cxx
+ 
+# tag all files in this dir
+cvs tag rel_1_0 .
+ 
+cvs checkout -r rel_1_0 dsim/sim
+cvs tag -b c5_off
+ 
+ 
+cvs add new.cxx
+cvs commit new.cxx
+ 
+ 
+# Tag sources in this dir with rel-v0_9
+cvs tag rel-v0_9 .
+ 
+# Check out with this tag name
+cvs co -r rel-v0_9
+
+
+# commit with message
+cvs ci -m "Log message" filename
+
+# Delete revision
+cvs admin -o release_number filename
+cvs admin -o 1.4.3 xxx.cxx
+
+# Modify log message
+cvs admin -mrev:message filename
+e.g.
+cvs admin -m1.636.2.92:"New message" filename
+
+
+
+#File status
+cvs status $file
+
+
+# revert to top of trunk, and ignore current changes (will be backed up in a file)
+cvs update -C $filename
+
+
+##############################################3
+# Go back one version for a file
+cvs update -r 1.80.12.3 sc_sheet.cxx
+
+# Go back to top of trunk
+cvs update -r icflow_2008-2_branch sc_sheet.cxx
+
+to allow edits check the -j option
+
+
+or 
+cvs update -r 1.8 gdc_route_mgr.cxx
+
+to move back to top of trunk remove the sticky bit
+cvs update -A gdc_route_mgr.cxx
+
+
+## update to certain date and time
+cvs update -f -D "03/31/2009 9:00"
+cvs co -f -r icflow_2009-1_branch -D "03/31/2009" ic/da_ic
+
+-f to use the most recent revision
+##############################################3
+#Will check out the file by date at the GMT time 04:04:40, same format as listed when doing status
+cvs co -r dev_20082e -D "2009-10-06 04:04:40 +0000" ic/da_ic/src/sc/sc_session.cxx
+
+#Will check out the file by date at the PDT time 21:04:40 equivalent to above
+cvs co -r dev_20082e -D "2009-10-05 21:04:40" ic/da_ic/src/sc/sc_session.cxx
+# same is to 
+cvs co -r dev_20082e -D "2009-10-05 21:04:40 -0700" ic/da_ic/src/sc/sc_session.cxx
+# where -0700 is PDT
