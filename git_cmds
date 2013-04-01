@@ -240,6 +240,26 @@ git config --global alias.unstage 'reset HEAD --'
 
 # Run shell command
 git config --global alias.visual '!gitk'
+
+##============================================================================##
+##=========                        Branching                         =========##
+##============================================================================##
+# HEAD special pointer pointing to the branch you are currently in
+
+# To branch (we initially started with a master branch)
+# git branch branch_name
+git branch testing
+
+# To switch branch
+# git checkout branch_name
+git checkout testing
+
+# Commit a change, now testing is different
+
+# switch back to master branch
+# Reverts file in local directory to be consistent with the master
+git checkout master 
+
 ######################
 ## Collaboration
 
