@@ -351,3 +351,6 @@ ssh-keygen -t rsa -C "your_email@example.com"
 
 # Update git to use ssh
 git remote set-url origin git@github.com:username/repo.git
+
+
+# Make master different
