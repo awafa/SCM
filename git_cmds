@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Compiled from schacon git book http://git-scm.com/book/en
+
 # Config editor
 git config --global core.editor
 
@@ -10,6 +12,15 @@ man gittutorial
 cd project
 git init
 
+#Ignore file
+.gitignore # add patterns to ignore
+
+# global ignore
+~/.gitignore_global #(or you name it)
+git config --global core.excludesfile ~/.gitignore_global
+##============================================================================##
+##=========                  Stagging and Commiting                  =========##
+##============================================================================##
 # Stage files for commit
 git add .
 #Or
@@ -56,6 +67,9 @@ git rm log/\*.log
 git mv file to_file
 
 
+##============================================================================##
+##=========                      Log Inspection                      =========##
+##============================================================================##
 # Log 
 git log
 
@@ -125,7 +139,9 @@ git branch -d experimental
 git branch -D experimental
 
 
-### Git hub
+##============================================================================##
+##=========                         Git hub                          =========##
+##============================================================================##
 git init
 git add *_cmds
 git commit -m"Initial commit"
@@ -169,7 +185,9 @@ git remote rename from to
 git remote rm remote-name
 
 
-### Tagging
+##============================================================================##
+##=========                         Tagging                          =========##
+##============================================================================##
 
 # List tags
 git tag
@@ -178,6 +196,50 @@ git tag
 # Lightweight
 # Annoated
 
+# Show details about tag
+git show v1.8.0.1
+
+# Annotated tagging
+git tag -a tag_name -m "message"
+
+# GPG signed tags
+git tag -s tag_name -m "message"
+
+# Verify a signed tag (Requires the author's public key to be present)
+git tag -v tag_name
+
+# LightWeight taggin
+git tag tag_name
+
+
+# Tagging a commit
+git log --pretty=oneline
+# git tag -a tag_name -m "Message" checksum(or part of it)
+git tag -a tag_name -m "Message" 6f26ad92
+
+
+# Tags have to be pushed explicitly
+git push origin tag_name
+
+
+##============================================================================##
+##=========                     Tips and tricks                      =========##
+##============================================================================##
+
+# Auto completion
+# cp the git-completion.bash from git_src/contrib/completion and source it
+
+# Define aliases
+git config --global alias.co checkout
+git config --global alias.br branch
+git config --global alias.ci commit
+git config --global alias.st status
+
+# Unstaging alias
+git config --global alias.unstage 'reset HEAD --'
+
+# Run shell command
+git config --global alias.visual '!gitk'
 ######################
 ## Collaboration
 
