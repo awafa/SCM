@@ -255,3 +255,37 @@ git clone alice.org:/home/alice/project myrepo
 #########
 ## Exploring History
 
+### Configuring git ssh
+#  https://help.github.com/articles/generating-ssh-keys
+
+cd ~/.ssh
+
+ssh-keygen -t rsa -C "your_email@example.com"
+
+# Creates a new ssh key using the provided email
+
+# Generating public/private rsa key pair.
+# Enter file in which to save the key (/home/you/.ssh/id_rsa):
+
+# Enter passphrase (empty for no passphrase): [Type a passphrase]
+# Enter same passphrase again: [Type passphrase again]
+
+
+# Copy generated public key
+# xclip -sel clip < ~/.ssh/id_rsa.pub
+
+
+# 1) Go to your Account Settings
+# 2) Click "SSH Keys" in the left sidebar
+# 3) Click "Add SSH key"
+# 4) Paste your key into the "Key" field
+# 5) Click "Add key"
+# 6) Confirm the action by entering your GitHub password
+
+
+## Test it
+ ssh -T git@github.com
+
+
+# Update git to use ssh
+git remote set-url origin git@github.com:username/repo.git
