@@ -260,6 +260,9 @@ git checkout testing
 # Reverts file in local directory to be consistent with the master
 git checkout master 
 
+# Merge the branch testing to master
+git merge testing
+
 ######################
 ## Collaboration
 
