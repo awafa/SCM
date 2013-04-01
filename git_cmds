@@ -132,6 +132,51 @@ git commit -m"Initial commit"
 git remote add origin https://github.com/awafa/SCM.git
 git push -u origin master
 
+## Show details about remotes
+git remote -v
+# origin  https://github.com/awafa/SCM.git (fetch)
+# origin  https://github.com/awafa/SCM.git (push)
+
+# To add nother remote
+git remote add short_name url
+# e.g.
+git remote add short_name git://github.com/paulboone/ticgit.git
+
+
+# To fetch updates in origin, get all the data that you don't have
+# , after that you should have references to all the branches from the remote
+# no auto merge
+git fetch origin
+
+# If you are tracking a remote, you can use
+git pull # to auto fetch and merge
+
+# if you used git clone, then you are tracking the origin
+
+
+## Pushing
+# git push remote_name branch_name
+git push origin master
+
+# Inspecting remote
+#git remote show remote-name
+git remote show origin
+
+# Rename remote
+git remote rename from to
+
+# Remote remove
+git remote rm remote-name
+
+
+### Tagging
+
+# List tags
+git tag
+
+## Types of tags
+# Lightweight
+# Annoated
 
 ######################
 ## Collaboration

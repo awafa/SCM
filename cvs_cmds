@@ -88,3 +88,5 @@ cvs co -r dev_20082e -D "2009-10-05 21:04:40" ic/da_ic/src/sc/sc_session.cxx
 # same is to 
 cvs co -r dev_20082e -D "2009-10-05 21:04:40 -0700" ic/da_ic/src/sc/sc_session.cxx
 # where -0700 is PDT
+
+#cvs suck
