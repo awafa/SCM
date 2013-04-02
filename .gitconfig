@@ -1,0 +1,17 @@
+[user]
+	name = Ahmed Wafa
+	email = awwafa@gmail.com
+
+[diff]
+   #external = /home/awafa/bin/git_diff_wrapper
+
+[difftool]
+   # Avoid asking when moving to next file
+   prompt = false
+   tool = /home/awafa/bin/git_diff_wrapper
+[alias]
+   dt = difftool
+[core]
+	excludesfile = /home/awafa/.gitignore_global
+[credential]
+	helper = cache

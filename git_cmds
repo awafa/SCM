@@ -242,6 +242,14 @@ git config --global alias.unstage 'reset HEAD --'
 git config --global alias.visual '!gitk'
 
 ##============================================================================##
+##=========                         Stashing                         =========##
+##============================================================================##
+git stash
+git pull
+git stash pop
+
+
+##============================================================================##
 ##=========                        Branching                         =========##
 ##============================================================================##
 # HEAD special pointer pointing to the branch you are currently in
@@ -371,6 +379,8 @@ ssh-keygen -t rsa -C "your_email@example.com"
 ## Test it
  ssh -T git@github.com
 
+# Change the pass phrase for the generated key
+ssh-keygen -f id_rsa -p
 
 # Update git to use ssh
 git remote set-url origin git@github.com:username/repo.git
