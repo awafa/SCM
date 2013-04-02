@@ -34,14 +34,21 @@ git commit -m""
 # Add to the staging area
 git add
 
+##============================================================================##
+##=========                         Diffing                          =========##
+##============================================================================##
 #to diff the staging area compared to HEAD
 git diff --cached 
 
 # to diff unstaged vs staging area
-
 # can use wild cards for removals
 git rm log/\*.log
 git diff 
+
+# To diff with remotes
+git branch -a  # List all branches
+git fetch origin/master   # Required for update origin/master with merge
+git diff origin/master master
 
 # to see status
 git status
