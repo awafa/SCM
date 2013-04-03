@@ -134,9 +134,14 @@ git commit -a
 git merge experimental
 
 
-# Graphical history
+##============================================================================##
+##=========                 GUI -- Graphical history                 =========##
+##============================================================================##
 gitk
 git citool
+
+# History for individual files
+gitk file_name
 
 
 # Delete the experimental branch, after making sure its changes were merged to the currennt branch
@@ -261,6 +266,9 @@ git stash pop
 ##============================================================================##
 # HEAD special pointer pointing to the branch you are currently in
 
+# Dump list of branches
+git branch
+
 # To branch (we initially started with a master branch)
 # git branch branch_name
 git branch testing
@@ -268,6 +276,9 @@ git branch testing
 # To switch branch
 # git checkout branch_name
 git checkout testing
+
+# To switch and branch
+git checkout -b testing
 
 # Commit a change, now testing is different
 
@@ -277,6 +288,71 @@ git checkout master
 
 # Merge the branch testing to master
 git merge testing
+
+# Delete the testing branch after you are done (if you want)
+git branch -d testing
+
+# git branch -D branch_name will force branch deletion
+
+# If the merge lead to conflicts
+git status
+# find the file to be merged
+# edit and resolve for the conflicts manually, look for <<<<<< and >>>>>>>
+
+# Visual merging
+git mergetool
+
+# Stage files with resolved merge conflicts will mark it as ready
+
+# Find branches not merged to current
+git branch --no-merged
+
+# Find branches merged to current
+git branch --merged
+
+
+# To merge a remote branch
+git mrege origin/branch_name
+
+# Fetching a remote branch, and checking it out
+git checkout -b branch_name origin/branch_name
+# Will track the origin, a git push will push to the same branch in the origin
+
+# Deleting remote branch
+# git push [remotename] [localbranch]:[remotebranch]
+git push origin :branch_name
+# If you leave off the [localbranch] portion, then you¿re basically saying, ¿Take nothing on my side and make it be [remotebranch].
+
+
+# Rebasing 
+# Update the base of my testing branch to include the latest from the master
+# Like stashing the testing diffs, making a new branch suffix2 based on TOT, and applying the testing patches, it just keeps the same branch name "testing"
+git checkout testing
+git rebase master 
+
+############### Rebasing example 1
+git branch new_fix
+# Commit some fixes in new_fix
+# Assume the master diverged with more work
+
+# Rebase the new_fix to include lastest from master
+git rebase origin/master
+
+# Merge work back on top of master
+git checkout master
+git merge new_fix
+############### End rebasing example 1
+
+# Rebase without checkout
+# Rebase my_branch with the lastest in master
+git rebase master my_branch
+
+
+
+##============================================================================##
+##=========                     Merge vs Rebase                      =========##
+##============================================================================##
+Rebasing replays changes from one line of work onto another in the order they were introduced, whereas merging takes the endpoints and merges them together.
 
 ######################
 ## Collaboration
