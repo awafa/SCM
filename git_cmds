@@ -344,15 +344,31 @@ git merge new_fix
 ############### End rebasing example 1
 
 # Rebase without checkout
-# Rebase my_branch with the lastest in master
+# Rebase my_branch on top of the master
+# (master stay where it is, my_branch change the branching base to be the master)
 git rebase master my_branch
+
 
 
 
 ##============================================================================##
 ##=========                     Merge vs Rebase                      =========##
 ##============================================================================##
-Rebasing replays changes from one line of work onto another in the order they were introduced, whereas merging takes the endpoints and merges them together.
+# Rebasing replays changes from one line of work onto another in the order they were introduced, whereas merging takes the endpoints and merges them together.
+
+# !!!!!!!!! Rebasing Warnings !!!!!!!!!
+# If you treat rebasing as a way to clean up and work with commits before you push them, and if you only rebase commits that have never been available publicly, then you¿ll be fine. If you rebase commits that have already been pushed publicly, and people may have based work on those commits, then you may be in for some frustrating trouble.
+
+
+##============================================================================##
+##=========                        Git server                        =========##
+##============================================================================##
+# A remote repository is generally a bare repository (no working directory)
+
+# ssh access
+git clone ssh://user@server:project.git
+
+
 
 ######################
 ## Collaboration
