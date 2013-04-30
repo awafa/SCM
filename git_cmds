@@ -172,6 +172,7 @@ git remote -v
 # To add nother remote
 git remote add short_name url
 # e.g.
+# Git protocol git:// is always non-authenticated read only access to the repo
 git remote add short_name git://github.com/paulboone/ticgit.git
 
 
@@ -451,7 +452,9 @@ git clone alice.org:/home/alice/project myrepo
 #########
 ## Exploring History
 
-### Configuring git ssh
+##============================================================================##
+##=========                 Configuring github  ssh                  =========##
+##============================================================================##
 #  https://help.github.com/articles/generating-ssh-keys
 
 cd ~/.ssh
@@ -490,3 +493,29 @@ git remote set-url origin git@github.com:username/repo.git
 
 
 # Make master different
+
+
+##============================================================================##
+##=========                      Git protocols                       =========##
+##============================================================================##
+
+# a) Local files
+# git clone path_to_project
+# e.g.
+git clone /home/awafa/backups/git_sandbox/SCM
+git clone --bare /home/awafa/backups/git_sandbox/SCM
+
+# Start the copying process as if it is done over the network, (remove left overs from an import)
+git clone file:///home/awafa/backups/git_sandbox/SCM
+
+# b) ssh
+Clone using ssh
+ git clone ssh://user@server:project.git
+ # If you don't specify a protocol it defaults to ssh
+ git clone user@server:project.git
+
+# c) git protocol
+# Git protocol git:// is always non-authenticated read only access to the repo
+
+# d) http/https
+Check the git pro book
