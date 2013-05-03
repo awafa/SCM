@@ -515,3 +515,18 @@ Clone using ssh
 
 # d) http/https
 Check the git pro book
+
+##============================================================================##
+##=========                 Import from SVN and CVS                  =========##
+##============================================================================##
+# # Importing from SVN
+# if you like to browse the source from a svn-repo, and you like gitk, why not using gitk? just do
+#
+# git svn init http://subversion.domain.org/repos
+# git svn fetch
+# git svn rebase
+#
+# and you have the svn repo "converted" to a local git repo, where you can use gitk
+# If you want to update your local git repo, just rerun fetch & rebase
+# for more info, take a look at git-svn(1)
+
