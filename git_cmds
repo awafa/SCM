@@ -38,6 +38,43 @@ git add
 # of the current branch, or you can only change commit
 # message
 git commit --amend -m "New commit message"
+
+##============================================================================##
+##=========                       Undo Commit                        =========##
+##============================================================================##
+# From http://stackoverflow.com/questions/927358/how-to-undo-the-last-git-commit
+ Undo a commit and redo
+
+#This is what you want to undo
+git commit ...              (1)
+
+
+# This is most often done when you remembered what you just committed is incomplete, or you misspelled your commit message, or both. Leaves working tree as it was before "reset".
+git reset --soft HEAD^      (2)
+
+
+#Make corrections to working tree files.
+edit                        (3)
+
+# Stage changes for commit.
+git add ....                (4)
+
+# "reset" copies the old head to .git/ORIG_HEAD; redo the commit by starting with its log message. If you do not need to edit the message further, you can give -C option instead.
+git commit -c ORIG_HEAD     (5)
+
+
+##============================================================================##
+##=========                       Nuke commit                        =========##
+##============================================================================##
+# Nuke the last commit
+git reset --hard HEAD~1
+
+# Save a nuked commit
+git reflog
+git checkout -b someNewBranchName shaYouDestroyed
+
+
+
 ##============================================================================##
 ##=========                         Diffing                          =========##
 ##============================================================================##
